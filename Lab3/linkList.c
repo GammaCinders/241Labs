@@ -1,4 +1,4 @@
-#include<lab3.h>
+#include"lab3.h"
 
 struct node *init() {
 	return (struct node*)malloc(sizeof(struct node)); 
@@ -13,13 +13,13 @@ void insert(struct node *head, int data) {
 	head->next->data = data;
 }	
 
-void print(struct node *head) {
+void display(struct node *head) {
 	head = head->next;
 
 	while(head->next != NULL) {
-		printf("%d -> ", data); 
+		printf("%d -> ", head->data); 
 		head = head->next;
-	} printf("%d\n", data);
+	} printf("%d\n", head->data);
 }
 
 void deleteAll(struct node *head) {
