@@ -4,8 +4,7 @@
 #ifndef LAB3_H
 #define LAB3_H
 
-struct node 
-{
+struct node {
 	int data;
 	struct node *next;
 };
