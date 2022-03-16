@@ -6,47 +6,39 @@ struct node {
 	struct node *next;
 };
 
-struct node *addFront(struct node *head,int v) {
-	if(head == NULL) {
-		struct node *newNode = (struct node *) malloc (sizeof(struct node));
-		newNode->value = v;
-		newNode->next = NULL;
-		return newNode;
-	} else {
-		struct node *newNode = (struct node *) malloc (sizeof(struct node));
-		newNode->value = v;
-		newNode->next = head;
-		return newNode;
-	}
+struct node *addFront(struct node *head, int v) {
+	struct node *newNode = (struct node*)malloc(sizeof(struct node));
+	newNode->value = v;
+	newNode->next = head;
+	return newNode;
 }
 
 struct node *removeFromFront(struct node *head) {
 	if(head == NULL) {
 		return NULL;
 	} else {
+		struct node *temp = head;
 		head = head->next;
+		free(temp);
 		return head;
 	}
 }
 
 void printElements(struct node *head) {
-	struct node *aux;
-	aux = head;
-
-	while(aux != NULL) {
-    		printf("%d\n",aux->value);
-    		aux = aux->next;
+	while(head != NULL) {
+    		printf("%d\n", head->value);
+    		head = head->next;
   	}
 }
 
 int main(void) {
 	struct node *head = NULL;
 
-	head = addFront(head,5);
-	head = addFront(head,4);
-	head = addFront(head,3);
-  	head = addFront(head,2);
-  	head = addFront(head,1);
+	head = addFront(head, 5);
+	head = addFront(head, 4);
+	head = addFront(head, 3);
+  	head = addFront(head, 2);
+  	head = addFront(head, 1);
 
   	printElements(head);
   

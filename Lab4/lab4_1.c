@@ -6,7 +6,7 @@ int main() {
 	int *p = pt;
 
 	int i;
-	for(i=0;i<4;i++) {
+	for(i=0;i<3;i++) {
 		p++;
 	}
 
