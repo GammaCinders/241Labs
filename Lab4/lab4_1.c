@@ -6,6 +6,7 @@ int main() {
 	int *p = pt;
 
 	int i;
+	//Problem here increments one past the last index
 	for(i=0;i<3;i++) {
 		p++;
 	}

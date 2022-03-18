@@ -17,6 +17,7 @@ struct node *removeFromFront(struct node *head) {
 	if(head == NULL) {
 		return NULL;
 	} else {
+		//Problem here where head was not freed
 		struct node *temp = head;
 		head = head->next;
 		free(temp);
