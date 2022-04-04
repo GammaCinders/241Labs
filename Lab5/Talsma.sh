@@ -10,23 +10,14 @@ else
 	do
 		if [ "${i}" == "-c" ]
 		then
-			echo "Number of files: $(ls -p | grep -v / | wc -l)"
-
-			bytes=0
-			for file in "$(ls -p | grep -v /)"
-			do
-				let "bytes += $(cat $(pwd)/${file} | wc -c)"
-			done
-			echo "Bytes used by files: ${bytes}"
+			echo "The number of files"
+			echo "How many bytes"
 		elif [ "${i}" == "-l" ]
 		then
-			echo "All files:"
-			echo "$(ls)"
+			echo "List all the files"
 		elif [ "${i}" == "--help" ]
 		then
-			echo "-c : Print number of files and bytes used"
-			echo "-l : Print all files"
-			echo "--help : Print this help menu"
+			echo "How to run this script"
 		fi
 	done
 fi
@@ -47,4 +38,25 @@ fi
 
 #Part 3
 echo "Number of files and directories: $(ls -1 | wc -l)"
-echo "Total bytes (disk usage) of files and directories: $(wc -c ./)"
+totalBytes=0
+for file in $(ls -1)
+do
+	if [ -f "${file}" ]
+	then
+		#Can't figure out how to access just first part other than this way
+		wasNum=0
+		for part in $(wc -c ${file})
+		do
+			if [ ${wasNum} -eq "0" ]
+			then
+				let "totalBytes += ${part}"
+				wasNum=1
+			else
+				wasNum=0
+				continue
+			fi
+			
+		done
+	fi
+done
+echo "Total bytes (disk usage) of files and directories: ${totalBytes}"
