@@ -38,4 +38,25 @@ fi
 
 #Part 3
 echo "Number of files and directories: $(ls -1 | wc -l)"
-echo "Total bytes (disk usage) of files and directories: $(du -b)" 
+totalBytes=0
+for file in $(ls -1)
+do
+	if [ -f "${file}" ]
+	then
+		#Can't figure out how to access just first part other than this way
+		wasNum=0
+		for part in $(wc -c ${file})
+		do
+			if [ ${wasNum} -eq "0" ]
+			then
+				let "totalBytes += ${part}"
+				wasNum=1
+			else
+				wasNum=0
+				continue
+			fi
+			
+		done
+	fi
+done
+echo "Total bytes (disk usage) of files and directories: ${totalBytes}"
